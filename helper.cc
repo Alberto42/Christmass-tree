@@ -57,8 +57,19 @@ std::ostream& operator<<(std::ostream& stream, const Date &d) {
     return stream;
 }
 
-
 Date& currentDate() {
     static Date current(18, 16, 0);
     return current;
+}
+
+Price Decoration::getPrice() const {
+    return price;
+}
+
+Decoration::Decoration(std::string name, Price price):name(name),price(price) {
+
+}
+
+std::string Decoration::getName() {
+    return name;
 }

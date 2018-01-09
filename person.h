@@ -9,22 +9,28 @@ class Person {
 public:
     void notify();
 };
+
 class Adult : public Person {
 private:
     std::string name;
     Price savings;
 public:
     std::string getName();
-    Adult(std::string name,Price savings = Price(0) );
+
+    Adult(std::string name, Price savings = Price(0));
+
     Price getSavings();
-    void buyDecoration(const Decoration& decoration);
+
+    void buyDecoration(const Decoration &decoration);
 
 };
 
-class Child : public Person{
+class Child : public Person {
 private:
     std::string name;
+
     std::string getName();
+
 public:
     Child(std::string name);
 };

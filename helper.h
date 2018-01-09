@@ -29,4 +29,18 @@ public:
 
 Date& currentDate();
 
+class Decoration{
+private:
+    Price price;
+    std::string name;
+protected:
+    Decoration(std::string name, Price price);
+public:
+    std::string getName();
+    Price getPrice() const;
+    virtual void doOperation(std::ostream &stream) = 0;
+
+};
+
+
 #endif //HELPER
