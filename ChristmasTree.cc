@@ -51,19 +51,19 @@ int main()
     auto savings1 = John->getSavings();
     cout << "Savings before: " << savings0 << " and after: " << savings1 << ".\n";
 
-//    // Drzewko ozdobione. Rachunek zapłacony. Od tego momentu startuje zegar.
-//    for (auto& time = currentDate();
-//         time < Date(24, 18, 0);
-//         ++time) {
-//        // Ada bawi się ozdobami choinkowymi o losowych porach (również nocą)...
-//        if (randomNumber() % 200 == 0) {
-//            cout << time << "\n";
-//            for (auto& x : tree) {
-//                // ... przyglądając się i manipulując losowo wybranymi ozdobami.
-//                if (randomNumber() % 4 == 0) {
-//                    x->doOperation(cout);
-//                }
-//            }
-//        }
-//    }
+    // Drzewko ozdobione. Rachunek zapłacony. Od tego momentu startuje zegar.
+    for (auto& time = currentDate();
+         time < Date(24, 18, 0);
+         ++time) {
+        // Ada bawi się ozdobami choinkowymi o losowych porach (również nocą)...
+        if (randomNumber() % 200 == 0) {
+            cout << time << "\n";
+            for (auto& x : tree) {
+                // ... przyglądając się i manipulując losowo wybranymi ozdobami.
+                if (randomNumber() % 4 == 0) {
+                    x->doOperation(cout);
+                }
+            }
+        }
+    }
 }

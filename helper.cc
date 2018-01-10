@@ -51,7 +51,7 @@ bool Date::operator<(const Date &d) const {
 }
 
 std::ostream& operator<<(std::ostream& stream, const Date &d) {
-    return stream << "December, " << d.day << ", " << d.hour << ":";
+    stream << "December, " << d.day << ", " << d.hour << ":";
     if(d.minute < 10) stream << "0";
     stream << d.minute;
     return stream;
