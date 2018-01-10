@@ -20,7 +20,7 @@ Price ChristmasTree::getPrice() {
 
 void ChristmasTree::addDecoration(std::shared_ptr<Decoration> decoration) {
     decorations.push_back(decoration);
-    notify();
+    notify(decoration);
 }
 
 void ChristmasTree::removeDecoration(CompositeList::iterator decoration) {
@@ -35,7 +35,10 @@ CompositeList::iterator ChristmasTree::end() {
     return decorations.end();
 }
 
-void ChristmasTree::notify() {
+void ChristmasTree::notify(std::shared_ptr<Decoration> decoration) {
+    for(auto o = observators.begin();o != observators.end(); o++) {
+        (*o)->notify(decoration);
+    }
 }
 
 void ChristmasTree::attachObserver(std::shared_ptr<Person> observator) {
@@ -55,7 +58,7 @@ void GlassBall::doOperation(std::ostream &stream) {
         broken = true;
     }
 
-    stream << getName() << ": " << broken ? "broken\n" : "OK\n";
+    stream << getName() << ": " << (broken ? "broken\n" : "OK\n");
 
 }
 

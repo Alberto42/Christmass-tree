@@ -15,8 +15,10 @@ private:
     std::string name;
     CompositeList decorations;
     ObservatorsList observators;
+    void notify(std::shared_ptr<Decoration> decoration);
 
 public:
+
     ChristmasTree(std::string name);
 
     Price getPrice();
@@ -28,8 +30,6 @@ public:
     CompositeList::iterator begin();
 
     CompositeList::iterator end();
-
-    void notify();
 
     void attachObserver(std::shared_ptr<Person> observator);
 
