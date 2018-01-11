@@ -35,6 +35,7 @@ private:
     std::string name;
 protected:
     Decoration(std::string name, Price price);
+    Decoration() = default;
 public:
     std::string getName();
     Price getPrice() const;

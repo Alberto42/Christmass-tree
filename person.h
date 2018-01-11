@@ -3,15 +3,18 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 #include "helper.h"
 
-class Person {
+class Observer {
+protected:
+    Observer() = default;
 public:
     virtual void notify(std::shared_ptr<Decoration> decoration,
                         std::ostream& stream = std::cout) = 0;
 };
 
-class Adult : public Person {
+class Adult : public Observer {
 private:
     std::string name;
     Price savings;
@@ -30,7 +33,7 @@ public:
 
 };
 
-class Child : public Person {
+class Child : public Observer {
 private:
     std::string name;
 

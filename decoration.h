@@ -7,34 +7,40 @@
 #include "person.h"
 
 using CompositeList = std::list<std::shared_ptr<Decoration> >;
-using ObserversList = std::list<std::shared_ptr<Person>>;
+using ObserversList = std::list<std::shared_ptr<Observer>>;
 
 class ObservableTree {
     ObserversList observators;
 
 protected:
     void notify(std::shared_ptr<Decoration> decoration);
+    ObservableTree() = default;
 
 public:
-    void attachObserver(std::shared_ptr<Person> observer);
+    void attachObserver(std::shared_ptr<Observer> observer);
 
     void detachObserver(ObserversList::iterator observer);
 };
 
-class ChristmasTree : public ObservableTree {
+class CompositeTree : public ObservableTree {
+protected:
+    CompositeTree() = default;
+    CompositeList decorations;
+public:
+    void addDecoration(std::shared_ptr<Decoration> decoration);
+
+    void removeDecoration(CompositeList::iterator decoration);
+};
+
+class ChristmasTree : public CompositeTree {
 private:
     std::string name;
-    CompositeList decorations;
 
 public:
 
     ChristmasTree(std::string name);
 
     Price getPrice();
-
-    void addDecoration(std::shared_ptr<Decoration> decoration);
-
-    void removeDecoration(CompositeList::iterator decoration);
 
     CompositeList::iterator begin();
 

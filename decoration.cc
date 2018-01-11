@@ -13,15 +13,6 @@ Price ChristmasTree::getPrice() {
     return result;
 }
 
-void ChristmasTree::addDecoration(std::shared_ptr<Decoration> decoration) {
-    decorations.push_back(decoration);
-    notify(decoration);
-}
-
-void ChristmasTree::removeDecoration(CompositeList::iterator decoration) {
-    decorations.erase(decoration);
-}
-
 CompositeList::iterator ChristmasTree::begin() {
     return decorations.begin();
 }
@@ -77,10 +68,19 @@ void ObservableTree::notify(std::shared_ptr<Decoration> decoration) {
     }
 }
 
-void ObservableTree::attachObserver(std::shared_ptr<Person> observer) {
+void ObservableTree::attachObserver(std::shared_ptr<Observer> observer) {
     observators.push_back(observer);
 }
 
 void ObservableTree::detachObserver(ObserversList::iterator observer) {
     observators.erase(observer);
+}
+
+void CompositeTree::addDecoration(std::shared_ptr<Decoration> decoration) {
+    decorations.push_back(decoration);
+    ObservableTree::notify(decoration);
+}
+
+void CompositeTree::removeDecoration(CompositeList::iterator decoration) {
+    decorations.erase(decoration);
 }
