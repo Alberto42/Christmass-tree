@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include "person.h"
+#include "decoration.h"
 
 using namespace std;
 
@@ -24,8 +25,5 @@ class MyClass {
 };
 
 int main() {
-//    shared_ptr<derived> dupa(make_shared<derived>() );
-//    shared_ptr<base> pbase =  make_shared<derived>();
-//    pbase->myFunc();
-    std::shared_ptr<Person> pointer;
+    ObservableTree();
 }

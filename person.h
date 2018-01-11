@@ -6,12 +6,19 @@
 #include <iostream>
 #include "helper.h"
 
+/*
+ * Obserwator choinki
+ */
 class Observer {
 protected:
     Observer() = default;
+
 public:
+    /*
+     * Metoda powiadamiania obserwatora o dodaniu nowej dekoracji
+     */
     virtual void notify(std::shared_ptr<Decoration> decoration,
-                        std::ostream& stream = std::cout) = 0;
+                        std::ostream &stream = std::cout) = 0;
 };
 
 class Adult : public Observer {
@@ -27,7 +34,7 @@ public:
     Price getSavings();
 
     void notify(std::shared_ptr<Decoration> decoration,
-                        std::ostream& ostream = std::cout) override;
+                std::ostream &ostream = std::cout) override;
 
     void buyDecoration(const Decoration &decoration);
 
@@ -42,8 +49,9 @@ private:
 public:
 
     Child(std::string name);
+
     void notify(std::shared_ptr<Decoration> decoration,
-                        std::ostream& stream = std::cout) override;
+                std::ostream &stream = std::cout) override;
 };
 
 #endif //JNP1_CHRISTMASS_TREE_PERSON_CC_H

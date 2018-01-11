@@ -6,25 +6,45 @@
 #include "helper.h"
 #include "person.h"
 
+/*
+ * Typ listy dekoracji swiatecznych
+ */
 using CompositeList = std::list<std::shared_ptr<Decoration> >;
+/*
+ * Typ listy obserwatorow choinki, dzieci lub doroslych
+ */
 using ObserversList = std::list<std::shared_ptr<Observer>>;
 
 class ObservableTree {
     ObserversList observators;
 
 protected:
+    /*
+     * Funkcja powiadamia wszystkich obserwatorow o dodanej dekoracji
+     */
     void notify(std::shared_ptr<Decoration> decoration);
+
     ObservableTree() = default;
 
 public:
+    /*
+     * Dodaje obserwatora choinki
+     */
     void attachObserver(std::shared_ptr<Observer> observer);
 
+    /*
+     * Usuwa obserwatora choinki
+     */
     void detachObserver(ObserversList::iterator observer);
 };
 
+/*
+ * Klasa reprezentuje drzewo ktore jest kompozytem
+ */
 class CompositeTree : public ObservableTree {
 protected:
     CompositeTree() = default;
+
     CompositeList decorations;
 public:
     void addDecoration(std::shared_ptr<Decoration> decoration);
@@ -32,6 +52,17 @@ public:
     void removeDecoration(CompositeList::iterator decoration);
 };
 
+/*
+ *           *
+            /.\
+           /..'\
+           /'.'\
+          /.''.'\
+          /.'.'.\
+   "'""""/'.''.'.\""'"'"
+         ^^^[_]^^^
+
+ */
 class ChristmasTree : public CompositeTree {
 private:
     std::string name;
@@ -42,8 +73,14 @@ public:
 
     Price getPrice();
 
+    /*
+     * Iterator poczatku listy dekoracji
+     */
     CompositeList::iterator begin();
 
+    /*
+     * Iterator za koncem listy dekoracji
+     */
     CompositeList::iterator end();
 
 };

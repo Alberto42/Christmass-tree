@@ -1,7 +1,3 @@
-//
-// Created by albert on 09.01.18.
-//
-
 #include "person.h"
 
 std::string Adult::getName() {
@@ -24,7 +20,7 @@ void
 Adult::notify(std::shared_ptr<Decoration> decoration, std::ostream &ostream) {
     totalCost = totalCost + decoration->getPrice();
     ostream << "We have new decoration!" << std::endl
-           << "Total cost is " << totalCost << "." << std::endl;
+            << "Total cost is " << totalCost << "." << std::endl;
 }
 
 std::string Child::getName() {
