@@ -3,8 +3,8 @@
 #include <random>
 
 int randomNumber() {
-    std::mt19937 gen(0);
-    std::uniform_int_distribution<> dis(0, std::numeric_limits<int>::max());
+    static std::mt19937 gen(0);
+    static std::uniform_int_distribution<> dis(0, std::numeric_limits<int>::max());
     return dis(gen);
 }
 
