@@ -1,10 +1,5 @@
-//
-// Created by albert on 09.01.18.
-//
-
-#include <assert.h>
+#include <cassert>
 #include "decoration.h"
-#include "person.h"
 
 ChristmasTree::ChristmasTree(std::string name) : name(name) {
 
@@ -33,20 +28,6 @@ CompositeList::iterator ChristmasTree::begin() {
 
 CompositeList::iterator ChristmasTree::end() {
     return decorations.end();
-}
-
-void ChristmasTree::notify(std::shared_ptr<Decoration> decoration) {
-    for(auto o = observators.begin();o != observators.end(); o++) {
-        (*o)->notify(decoration);
-    }
-}
-
-void ChristmasTree::attachObserver(std::shared_ptr<Person> observator) {
-    observators.push_back(observator);
-}
-
-void ChristmasTree::detachObserver(ObservatorsList::iterator observator) {
-    observators.erase(observator);
 }
 
 GlassBall::GlassBall(std::string name, Price price) : Decoration(name, price) {
@@ -88,4 +69,18 @@ void Lights::doOperation(std::ostream &stream) {
     stream << getName() << ": "
            << (state == 0 ? "off\n" :
                state == 1 ? "constant\n" : "blinking\n");
+}
+
+void ObservableTree::notify(std::shared_ptr<Decoration> decoration) {
+    for(auto o = observators.begin();o != observators.end(); o++) {
+        (*o)->notify(decoration);
+    }
+}
+
+void ObservableTree::attachObserver(std::shared_ptr<Person> observer) {
+    observators.push_back(observer);
+}
+
+void ObservableTree::detachObserver(ObserversList::iterator observer) {
+    observators.erase(observer);
 }

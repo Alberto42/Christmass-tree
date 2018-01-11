@@ -6,16 +6,25 @@
 #include "helper.h"
 #include "person.h"
 
-
 using CompositeList = std::list<std::shared_ptr<Decoration> >;
-using ObservatorsList = std::list<std::shared_ptr<Person>>;
+using ObserversList = std::list<std::shared_ptr<Person>>;
 
-class ChristmasTree {
+class ObservableTree {
+    ObserversList observators;
+
+protected:
+    void notify(std::shared_ptr<Decoration> decoration);
+
+public:
+    void attachObserver(std::shared_ptr<Person> observer);
+
+    void detachObserver(ObserversList::iterator observer);
+};
+
+class ChristmasTree : public ObservableTree {
 private:
     std::string name;
     CompositeList decorations;
-    ObservatorsList observators;
-    void notify(std::shared_ptr<Decoration> decoration);
 
 public:
 
@@ -30,10 +39,6 @@ public:
     CompositeList::iterator begin();
 
     CompositeList::iterator end();
-
-    void attachObserver(std::shared_ptr<Person> observator);
-
-    void detachObserver(ObservatorsList::iterator observator);
 
 };
 
